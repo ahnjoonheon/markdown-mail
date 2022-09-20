@@ -3,13 +3,32 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-// svelte view engine
-const svelteViewEngine = require('svelte-view-engine');
-app.engine('svelte', svelteViewEngine);
-app.set('view engine', 'svelte');
+app.get('/', (req, res) =>
+    res.send('Hello World!')
+);
 
-// '/' 호출하면 'Hello World!' 출력
-app.get('/', (req, res) => res.sendFile('index.html', { root: '../markdown-mail/markdown-mail-client' }));
+app.get('/api/users/1', (req, res) => {
+    res.json({
+        id: 1,
+        name: '안준헌',
+        age: 30,
+        email: '',
+        phone: '',
+        address: '',
+        company: '',
+        position: '',
+        homepage: '',
+        github: '',
+        facebook: '',
+        instagram: '',
+        twitter: '',
+        linkedin: '',
+        youtube: '',
+        blog: '',
+        etc: ''
+    });
+});
 
-// port 3000으로 서버 실행
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () =>
+    console.log(`Example app listening on port ${port}!`)
+);
